@@ -9,7 +9,7 @@ public:
 	Action(Ent *a, Ent *b);
 	void setResult(bool r) {result = r;}
 	bool getResult() {return result;}
-	void fight(Ent *a, Ent *b, int amove, int bmove);
+	void fight(Ent *a, Ent *b);
 private:
 	bool result;
 };
