@@ -1,13 +1,11 @@
 #include "Ent.h"
 
-Ent::Ent(int hp, int def, int atc, int spe, bool ai, bool ex)
+Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai), LVL(0), external(ex)
 {
     setHP(hp);
     setDEF(def);
     setATC(atc);
     setSPE(spe);
-    external = ex;
-    AI = ai;
     if (ai)
     {
         for (int i = 0;i < 100; i++)
@@ -23,6 +21,7 @@ void Ent::printStats()
     cout << "DEF: " << getDEF() << endl;
     cout << "ATC: " << getATC() << endl;
     cout << "SPE: " << getSPE() << endl;
+    cout << "\n\n" << endl;
 }
 
 int Ent::getAI(Ent *a, Ent *b)
@@ -51,7 +50,6 @@ int Ent::getAI(Ent *a, Ent *b)
             for (int n = startN; n < endN; n++)
             {
                nodes[i] += nodes[n];
-
             } 
             nodes[i] *= w;
         }
