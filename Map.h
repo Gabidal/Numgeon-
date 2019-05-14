@@ -3,6 +3,7 @@
 
 #include "Ent.h"
 #include "Rand.h"
+#include "Item.h"
 #include <vector>
 #include <iostream>
 using namespace std;
