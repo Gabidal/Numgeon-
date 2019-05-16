@@ -1,5 +1,5 @@
 #ifndef _RAND_H_
-#define _DAND_H_
+#define _RAND_H_
 #include <time.h>
 #include <random>
 using namespace std;

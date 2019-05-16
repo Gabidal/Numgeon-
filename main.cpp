@@ -2,23 +2,29 @@
 #include "Ent.h"
 #include "Map.h"
 #include "Action.h"
+#include "Shop.h"
+#include "console.h"
+#include "Lobby.hpp"
 #include <iostream>
 using namespace std;
+
+
+vector<Shop*> conquested;
+Ent *player = new Ent(Rand::getRand(200, 1000), Rand::getRand(20, 40), Rand::getRand(20, 40), Rand::getRand(1, 3), Rand::getRand(100, 200), true, false);
+int choose;
 
 int main()
 {
     char *name[20];
     Rand::initialize();
-    Ent *e = new Ent(100, 5, 10, 10, false, false);
-    cout << "what is youre name?\n: ";
+    cout << Y << "what is youre name?\n: " << RESET;
     cin >> *name;
-    e->setName(*name);
-
-    e->printStats();
-    Map *m = new Map(10);
-    for (int i = 0; i < m->getSize(); i++)
+    player->setName(*name);
+    player->printStats();
+    while (true)
     {
-     Action *a = new Action(e, m->getFromMap(i));
+        lobby(player, choose, conquested);
     }
-    
 }
+
+
