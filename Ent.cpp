@@ -1,65 +1,54 @@
 #include "Ent.h"
 
-Ent::Ent(int hp, int def, int atc, int spe, bool ai, bool ex)
+
+Ent::Ent(bool ai, bool block, bool alive, int x, int y)
 {
-    setHP(hp);
-    setDEF(def);
-    setATC(atc);
-    setSPE(spe);
-    external = ex;
     AI = ai;
+    Block = block;
+    Alive = alive;
     if (ai)
     {
-        for (int i = 0;i < 100; i++)
+        for(int i = 0; i< Rand::getRand(3, 9); i++)
         {
-            nodes.push_back(Rand::getRand(0.00, 1.00));
-        }
-    }
-}
-
-void Ent::printStats()
-{
-    cout << "HP: " << getHP() << endl;
-    cout << "DEF: " << getDEF() << endl;
-    cout << "ATC: " << getATC() << endl;
-    cout << "SPE: " << getSPE() << endl;
-}
-
-int Ent::getAI(Ent *a, Ent *b)
-{
-    nodes[0] = (double)a->getHP();
-    nodes[1] = (double)a->getDEF();
-    nodes[2] = (double)a->getATC();
-    nodes[3] = (double)a->getSPE();
-    
-    nodes[4] = (double)b->getHP();
-    nodes[5] = (double)b->getDEF();
-    nodes[6] = (double)b->getATC();
-    nodes[7] = (double)b->getSPE();
-    
-    int startL = 10;
-    int endL = 19;
-    int startN = 0;
-    int endN = 9;
-
-    for (int j = 0; j < 10; j++)
-    {
-        for (int i = startL;i < endL;i ++)
-        {
-            double w = nodes[i];
-            nodes[i] = 0.00;
-            for (int n = startN; n < endN; n++)
+            for(int j = 0; j < Rand::getRand(20, 60);j++)
             {
-               nodes[i] += nodes[n];
-
-            } 
-            nodes[i] *= w;
+                Nodes->at(i).at(j) = 1.00;
+                Weights->at(i).at(j) = Rand::getRand(-0.30, 1.30);
+            }
         }
-        startL += 10;
-        endL += 10;
-        startN += 10;
-        endN += 10;
     }
+    if (block)
+    {
+        SPE = 0;
+    }
+    if (alive)
+    {
+        ATC = 1;
+    }
+}
 
-    return (int)nodes[99];
+void Ent::getStats(Ent *e, vector<vector <double> > *modable, int x, int y)
+{
+    modable->at(0+x).at(0+y) += e->ID;
+    modable->at(0+x).at(1+y) += e->HP;
+    modable->at(0+x).at(2+y) += e->DEF;
+    modable->at(0+x).at(3+y) += e->ATC;
+    modable->at(0+x).at(4+y) += e->SPE;
+    modable->at(0+x).at(5+y) += e->STA;
+    modable->at(0+x).at(7+y) += e->X;
+    modable->at(0+x).at(8+y) += e->Y;
+}
+
+void Ent::feedFoward(Ent *e)
+{
+    initializeNN(e);
+    m->mulMatrix(Nodes, Weights, Nodes);
+}
+
+void Ent::initializeNN(Ent *e)
+{
+    //give the input nodes the input.
+    getStats(this, Nodes, 0, 0);
+    //opposites stats as well
+    getStats(e, Nodes, 0, 9);
 }
