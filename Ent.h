@@ -31,11 +31,13 @@ public:
     int getFIT() { return FIT;}
     void addItem(Item *i) { items.push_back(i);}
     void useItem(int i);
+
     void printStats();
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
-    bool getEx() { return external;}
+    bool getEx() { return external;}    
+    
     void clear();
 
 public:
