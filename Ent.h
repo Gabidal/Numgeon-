@@ -9,7 +9,7 @@ using namespace std;
 class Ent 
 {
 public:
-    Ent(int hp, int def, int atc, int spe, bool ai, bool ex);
+    Ent(int hp, int def, int atc, int spe, int STA, bool ai, bool ex);
     ~Ent();
     void setHP(int h) { HP = h;}
     int getHP() { return HP;}
@@ -19,19 +19,32 @@ public:
     int getATC() { return ATC;}
     void setSPE(int s) { SPE = s;}
     int getSPE() { return SPE;}
-    void setName(char *n) { *name = *n;}
-    char *getName() { return name;}
+    void setName(const char *n) { name = n;}
+    const char *getName() { return name;}
+    void setSTA(int sta) { STA = sta;}
+    int getSTA() { return STA;}
+    void nextLVL(int l) { LVL += l;}
+    int getLVL() { return LVL;}
+    void setFIT(int fit) { FIT = fit;}
+    int getFIT() { return FIT;}
     void printStats();
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
+
+public:
+    vector<int> moves;
+
 private:
-    char name[20];
+    const char *name;
     int HP;
     int DEF;
     int ATC;
     int SPE;
+    int STA;
+    int LVL;
+    int FIT;
     bool AI;
     bool external;
     vector<double> nodes;
