@@ -12,6 +12,7 @@ class Ent
 {
 public:
     Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex);
+
     ~Ent();
     void setHP(int h) { HP = h;}
     int getHP() { return HP;}
@@ -31,6 +32,7 @@ public:
     int getFIT() { return FIT;}
     void addItem(Item *i) { items.push_back(i);}
     void useItem(int i);
+
     void printStats();
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);

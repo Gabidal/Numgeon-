@@ -34,6 +34,7 @@ void Ent::printStats()
     cout << BLU << "ATC: " << G << getATC() << endl;
     cout << M << "SPE: " << G << getSPE() << endl;
     cout << Y << "STA: " << G << getSTA() << endl;
+
     cout << "\n\n" << endl;
 }
 
@@ -61,7 +62,7 @@ int Ent::getAI(Ent *a, Ent *b)
             double value = nodes[x][y];
 
             for (int ny = 0; ny < 10; ny++)
-            {
+            {                
                 double weight = weights[x][y][ny];
                 nodes[x + 1][ny] += value * weight;
             }
