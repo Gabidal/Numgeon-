@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Rand.h"
+#include "Item.h"
 using namespace std;
 
 class Ent 
@@ -27,18 +28,19 @@ public:
     int getLVL() { return LVL;}
     void setFIT(int fit) { FIT = fit;}
     int getFIT() { return FIT;}
+    void addItem(Item *i) { items.push_back(i);}
+    void useItem(int i);
     void printStats();
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
-    
     void clear();
-
-public:
+    public:
     vector<int> moves;
     vector<vector<double>> nodes;
     vector<vector<vector<double>>> weights;
+    vector<Item*> items;
 
 private:
     const char *name;

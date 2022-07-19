@@ -34,6 +34,7 @@ void Ent::printStats()
     cout << "DEF: " << getDEF() << endl;
     cout << "ATC: " << getATC() << endl;
     cout << "SPE: " << getSPE() << endl;
+
     cout << "STA: " << getSTA() << endl;
 
     cout << "\n\n" << endl;
@@ -85,7 +86,8 @@ int Ent::getAI(Ent *a, Ent *b)
     sum /= 10.0;
     sum *= 20.0;
 
-    return (Rand::getRand(-1, 20));
+    return (Rand::getRand(-1, 21));
+
 }
 
 void Ent::clear()
@@ -95,4 +97,15 @@ void Ent::clear()
         for (int j = 0; j < 10; j++)
         nodes[i][j] = 0;
     }
+}
+
+void Ent::useItem(int i)
+{
+    Item *item = items.at(i);
+    setHP(getHP() + item->affectHP);
+    setDEF(getDEF() + item->affectDEF);
+    setATC(getATC() + item->affectATC);
+    setSPE(getSPE() + item->affectSPE);
+    setSTA(getSTA() + item->affectSTA);
+    items.erase(items.begin() + i);
 }

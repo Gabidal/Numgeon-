@@ -16,11 +16,15 @@ Action::Action(Ent *a, Ent *b)
 		if (a->getHP() < 1)
 		{
 			cout << a->getName() << " lost the game! " << b->getName() << " wins!" << endl;
+			b->addItem(a->items.at(0));
 			break;
 		}
 		if (b->getHP() < 1)
 		{
 			cout << b->getName() << " lost the game! " << a->getName() << " wins!" << endl;
+      
+			a->addItem(b->items.at(0));
+
 			break;
 		}
 		//PLAYER-_-_-_-_-_-_-_-_-_-_-_-
@@ -57,7 +61,8 @@ Action::Action(Ent *a, Ent *b)
 		}
 
 		b->moves.push_back(move);
-
+    
+    
 		if (a->getSPE() != b->getSPE())
 		{
 			Ent* e = (a->getSPE() > b->getSPE()) ? a : b;
@@ -76,9 +81,16 @@ Action::Action(Ent *a, Ent *b)
 			e->moves.push_back(move);
 		}
 
-
-		fight(b, a);
+		for (int amove : a->moves)
+		{
+		  fight(a, b, amove);
+		}
     
+		for (int bmove : b->moves)
+		{
+		  fight(b, a, bmove);
+		}
+
 		cout << a->getName() << " stats\n: ";
 		a->printStats();
 		cout << b->getName() << " stats\n: ";
@@ -89,10 +101,8 @@ Action::Action(Ent *a, Ent *b)
 	}
 }
 
-void Action::fight(Ent *a, Ent *b)
+void Action::fight(Ent *a, Ent *b, int amove)
 {
-	for (int amove : a->moves)
-  {
 		if (amove < a->getSTA())
 		{
 			if (amove < 0 && amove > -33)
@@ -111,15 +121,38 @@ void Action::fight(Ent *a, Ent *b)
 			cout << "Try hard. lose like a boss... said " << a->getName() << endl; 
 		}
 
-			if (amove < 21 && amove > 10) //rest turn amount.
+			if (amove < 20 && amove > 10) //rest turn amount.
 			{
 				a->setSTA(a->getSTA() + amove + a->getFIT());
-				a->setHP(a->getHP() + 2);
 				cout << a->getName() << " tooke a nap to heal it´s self." << endl;
 			} 
-			else  //try items that are in inv by index.
+			else if (amove > 19)  //try items that are in inv by index.
 			{
+				if ((amove-20) < a->items.size())
+				{
+				cout << a->getName() << " used" << a->items.at(amove-20) << endl;
+				a->useItem(amove-20);
+				}
+				else
+				{
+					cout << "That slot is empty!" << endl;
+					cout << "Please choose again dear " << a->getName() << endl;
+					cin >> amove;
+					
+					if (Rand::getRand(0, 2) == 0)
+					{
+						cout << "OPP´s youre out of time, better be smarter next time dude!" << endl;
+					}
+					else if (Rand::getRand(0, 2) == 1)
+					{
+						cout << "Too slow!" << endl;
+					}
+					else
+					{
+						cout << "Better luck next time!" << endl;
+					}
+					
+				}
 				
 			}
-	}
 }
