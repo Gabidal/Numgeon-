@@ -1,6 +1,5 @@
 #include "Ent.h"
 
-
 Ent::Ent(bool ai, bool block, bool alive, int x, int y)
 {
     AI = ai;
