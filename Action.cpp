@@ -77,6 +77,7 @@ Action::Action(Ent *a, Ent *b)
 		}
 
 		b->moves.push_back(move);
+
 		if (a->getSPE() != b->getSPE())
 		{
 			Ent* e = (a->getSPE() > b->getSPE()) ? a : b;
@@ -107,7 +108,6 @@ Action::Action(Ent *a, Ent *b)
 		a->printStats();
 		cout << b->getName() << " stats\n: ";
 		b->printStats();
-    
     
 		a->moves.clear();
 		b->moves.clear();
@@ -173,7 +173,6 @@ void Action::fight(Ent *a, Ent *b, int amove)
 					{
 						cout << R << a->getName() << " Tryed to use a item but, it faild!" << endl;
 					}
-					
 					
 				}
 				

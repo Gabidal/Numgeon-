@@ -6,6 +6,7 @@
 #include "Rand.h"
 #include "Item.h"
 #include "console.h"
+
 using namespace std;
 
 class Ent 
