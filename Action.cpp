@@ -96,7 +96,6 @@ Action::Action(Ent *a, Ent *b)
 		cout << b->getName() << " stats\n: ";
 		b->printStats();
     
-    
 		a->moves.clear();
 		b->moves.clear();
 	}
