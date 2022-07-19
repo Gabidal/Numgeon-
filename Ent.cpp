@@ -33,7 +33,9 @@ void Ent::printStats()
     cout << "DEF: " << getDEF() << endl;
     cout << "ATC: " << getATC() << endl;
     cout << "SPE: " << getSPE() << endl;
+    
     cout << "STA: " << getSTA() << endl;
+
     cout << "\n\n" << endl;
 }
 

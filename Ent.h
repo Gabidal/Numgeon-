@@ -36,8 +36,7 @@ public:
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
     void clear();
-
-public:
+    public:
     vector<int> moves;
     vector<vector<double>> nodes;
     vector<vector<vector<double>>> weights;

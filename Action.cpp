@@ -22,7 +22,9 @@ Action::Action(Ent *a, Ent *b)
 		if (b->getHP() < 1)
 		{
 			cout << b->getName() << " lost the game! " << a->getName() << " wins!" << endl;
+      
 			a->addItem(b->items.at(0));
+
 			break;
 		}
 		//PLAYER-_-_-_-_-_-_-_-_-_-_-_-
@@ -59,7 +61,8 @@ Action::Action(Ent *a, Ent *b)
 		}
 
 		b->moves.push_back(move);
-
+    
+    
 		if (a->getSPE() != b->getSPE())
 		{
 			Ent* e = (a->getSPE() > b->getSPE()) ? a : b;
@@ -80,16 +83,20 @@ Action::Action(Ent *a, Ent *b)
 
 		for (int amove : a->moves)
 		{
-		fight(a, b, amove);
+		  fight(a, b, amove);
 		}
+    
 		for (int bmove : b->moves)
 		{
-		fight(b, a, bmove);
+		  fight(b, a, bmove);
 		}
+
 		cout << a->getName() << " stats\n: ";
 		a->printStats();
 		cout << b->getName() << " stats\n: ";
 		b->printStats();
+    
+    
 		a->moves.clear();
 		b->moves.clear();
 	}
