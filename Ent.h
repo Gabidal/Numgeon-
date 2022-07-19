@@ -32,9 +32,13 @@ public:
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
+    
+    void clear();
 
 public:
     vector<int> moves;
+    vector<vector<double>> nodes;
+    vector<vector<vector<double>>> weights;
 
 private:
     const char *name;
@@ -47,7 +51,6 @@ private:
     int FIT;
     bool AI;
     bool external;
-    vector<double> nodes;
 };
 
 #endif

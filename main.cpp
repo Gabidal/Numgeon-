@@ -9,7 +9,7 @@ int main()
 {
     char *name[20];
     Rand::initialize();
-    Ent *e = new Ent(Rand::getRand(60, 100), Rand::getRand(5, 30), Rand::getRand(10, 50), Rand::getRand(1, 3), Rand::getRand(100, 200), false, false);
+    Ent *e = new Ent(Rand::getRand(60, 100), Rand::getRand(10, 30), Rand::getRand(10, 50), Rand::getRand(1, 3), Rand::getRand(100, 200), false, false);
     cout << "what is youre name?\n: ";
     cin >> *name;
     e->setName(*name);

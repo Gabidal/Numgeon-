@@ -1,6 +1,7 @@
 #include "Ent.h"
 
-Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai), LVL(0), external(ex)
+
+Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai), LVL(0), external(ex), STA(sta)
 {
     setHP(hp);
     setDEF(def);
@@ -8,9 +9,21 @@ Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai),
     setSPE(spe);
     if (ai)
     {
-        for (int i = 0;i < 100; i++)
+        for (int x = 0; x < 5; x++)
         {
-            nodes.push_back(Rand::getRand(0.00, 1.00));
+            weights.push_back(vector<vector<double>>());
+            nodes.push_back(vector<double>());
+
+            for (int y = 0; y < 10; y++)
+            {
+                weights[x].push_back(vector<double>());
+                nodes[x].push_back(0.0);
+
+                for (int z = 0; z < 10; z++)
+                {
+                    weights[x][y].push_back(Rand::getRand(0.01, 1.30));
+                }
+            }
         }
     }
 }
@@ -21,43 +34,65 @@ void Ent::printStats()
     cout << "DEF: " << getDEF() << endl;
     cout << "ATC: " << getATC() << endl;
     cout << "SPE: " << getSPE() << endl;
+    cout << "STA: " << getSTA() << endl;
+
     cout << "\n\n" << endl;
 }
 
 int Ent::getAI(Ent *a, Ent *b)
 {
-    nodes[0] = (double)a->getHP();
-    nodes[1] = (double)a->getDEF();
-    nodes[2] = (double)a->getATC();
-    nodes[3] = (double)a->getSPE();
-    
-    nodes[4] = (double)b->getHP();
-    nodes[5] = (double)b->getDEF();
-    nodes[6] = (double)b->getATC();
-    nodes[7] = (double)b->getSPE();
-    
-    int startL = 10;
-    int endL = 19;
-    int startN = 0;
-    int endN = 9;
+    clear();
 
-    for (int j = 0; j < 10; j++)
+    nodes[0][0] = (double)a->getHP() / 100.0;
+    nodes[0][1] = (double)a->getDEF() / 100.00;
+    nodes[0][2] = (double)a->getATC() / 100.0;
+    nodes[0][3] = (double)a->getSPE() / 100.0;
+    nodes[0][4] = (double)a->getSTA() / 100.0;
+    
+    nodes[0][5] = (double)b->getHP() / 100.00;
+    nodes[0][6] = (double)b->getDEF() / 100.00;
+    nodes[0][7] = (double)b->getATC() / 100.00;
+    nodes[0][8] = (double)b->getSPE() / 100.0;
+    nodes[0][9] = (double)b->getSTA() / 100.0;
+
+
+    for (int x = 0; x < 5 - 1; x++)
     {
-        for (int i = startL;i < endL;i ++)
+        for (int y = 0; y < 10; y++)
         {
-            double w = nodes[i];
-            nodes[i] = 0.00;
-            for (int n = startN; n < endN; n++)
+            double value = nodes[x][y];
+
+            for (int ny = 0; ny < 10; ny++)
             {
-               nodes[i] += nodes[n];
-            } 
-            nodes[i] *= w;
+                double weight = weights[x][y][ny];
+                nodes[x + 1][ny] += value * weight;
+            }
+
+            for (int ny = 0; ny < 10; ny++)
+            {
+                nodes[x + 1][ny] = tanh(nodes[x + 1][ny]);
+            }
         }
-        startL += 10;
-        endL += 10;
-        startN += 10;
-        endN += 10;
     }
 
-    return (int)nodes[99];
+    double sum = 0.0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        sum += nodes[4][i];
+    }
+    
+    sum /= 10.0;
+    sum *= 20.0;
+
+    return (Rand::getRand(-1, 20));
+}
+
+void Ent::clear()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        nodes[i][j] = 0;
+    }
 }
