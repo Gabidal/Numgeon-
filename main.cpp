@@ -11,6 +11,7 @@ using namespace std;
 
 vector<Shop*> conquested;
 Ent *player = new Ent(Rand::getRand(800, 1000), Rand::getRand(20, 40), Rand::getRand(20, 40), Rand::getRand(1, 3), Rand::getRand(100, 200), false, false);
+
 int choose;
 
 int main()

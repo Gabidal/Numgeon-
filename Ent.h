@@ -6,6 +6,7 @@
 #include "Rand.h"
 #include "Item.h"
 #include "console.h"
+
 using namespace std;
 
 class Ent 
@@ -38,6 +39,7 @@ public:
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
+
     void clear();
 
 public:
