@@ -4,6 +4,8 @@
 #include "Ent.h"
 #include "Rand.h"
 #include "Item.h"
+#include "Shop.h"
+
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -11,14 +13,10 @@ using namespace std;
 class Map
 {
 public:
-	Map(int size);
-	~Map();
-	void setToMap(int i, Ent *e);
-	Ent *getFromMap(int i);
-	void printMap();
-	int getSize() { return map.size();}
+	Map(int x, int y);
+	int getSize() {return map.size();}
+	vector<Shop*> map;
 private:
-	vector<Ent*> map;
 };
 
 #endif

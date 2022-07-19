@@ -5,12 +5,14 @@
 #include <vector>
 #include "Rand.h"
 #include "Item.h"
+#include "console.h"
+
 using namespace std;
 
 class Ent 
 {
 public:
-    Ent(int hp, int def, int atc, int spe, int STA, bool ai, bool ex);
+    Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex);
     ~Ent();
     void setHP(int h) { HP = h;}
     int getHP() { return HP;}
@@ -30,13 +32,16 @@ public:
     int getFIT() { return FIT;}
     void addItem(Item *i) { items.push_back(i);}
     void useItem(int i);
+
     void printStats();
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
-    bool getEx() { return external;}
+    bool getEx() { return external;}    
+    
     void clear();
-    public:
+
+public:
     vector<int> moves;
     vector<vector<double>> nodes;
     vector<vector<vector<double>>> weights;

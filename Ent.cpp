@@ -30,12 +30,11 @@ Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai),
 
 void Ent::printStats()
 {
-    cout << "HP: " << getHP() << endl;
-    cout << "DEF: " << getDEF() << endl;
-    cout << "ATC: " << getATC() << endl;
-    cout << "SPE: " << getSPE() << endl;
-
-    cout << "STA: " << getSTA() << endl;
+    cout << R << "\nHP: " << G << getHP() << endl;
+    cout << C << "DEF: " << G << getDEF() << endl;
+    cout << BLU << "ATC: " << G << getATC() << endl;
+    cout << M << "SPE: " << G << getSPE() << endl;
+    cout << Y << "STA: " << G << getSTA() << endl;
 
     cout << "\n\n" << endl;
 }
@@ -63,8 +62,7 @@ int Ent::getAI(Ent *a, Ent *b)
         {
             double value = nodes[x][y];
 
-            for (int ny = 0; ny < 10; ny++)
-            {
+            for (int ny = 0; ny < 10; ny++)            {
                 double weight = weights[x][y][ny];
                 nodes[x + 1][ny] += value * weight;
             }
@@ -85,8 +83,7 @@ int Ent::getAI(Ent *a, Ent *b)
     
     sum /= 10.0;
     sum *= 20.0;
-
-    return (Rand::getRand(-1, 21));
+    return (Rand::getRand(Rand::getRand(Rand::getRand(-32, -10), Rand::getRand(-11, 0)), Rand::getRand(Rand::getRand(1, 10), Rand::getRand(11, 20))));
 
 }
 
