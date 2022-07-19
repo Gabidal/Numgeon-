@@ -77,12 +77,13 @@ Action::Action(Ent *a, Ent *b)
 		}
 
 
-		fight(a, b);
 		fight(b, a);
+    
 		cout << a->getName() << " stats\n: ";
 		a->printStats();
 		cout << b->getName() << " stats\n: ";
 		b->printStats();
+    
 		a->moves.clear();
 		b->moves.clear();
 	}
@@ -91,7 +92,7 @@ Action::Action(Ent *a, Ent *b)
 void Action::fight(Ent *a, Ent *b)
 {
 	for (int amove : a->moves)
-	{
+  {
 		if (amove < a->getSTA())
 		{
 			if (amove < 0 && amove > -33)

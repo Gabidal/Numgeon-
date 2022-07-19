@@ -32,6 +32,7 @@ public:
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
     bool getEx() { return external;}
+    
     void clear();
 
 public:

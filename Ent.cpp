@@ -1,5 +1,6 @@
 #include "Ent.h"
 
+
 Ent::Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex) : AI(ai), LVL(0), external(ex), STA(sta)
 {
     setHP(hp);
@@ -34,6 +35,7 @@ void Ent::printStats()
     cout << "ATC: " << getATC() << endl;
     cout << "SPE: " << getSPE() << endl;
     cout << "STA: " << getSTA() << endl;
+
     cout << "\n\n" << endl;
 }
 
