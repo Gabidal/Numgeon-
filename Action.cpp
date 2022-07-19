@@ -15,7 +15,7 @@ Action::Action(Ent *a, Ent *b)
 	{
 		if (a->getHP() < 1)
 		{
-    	cout << Y << a->getName() << " lost the game! " << R << b->getName() << " wins!" << endl;
+			cout << Y << a->getName() << " lost the game! " << R << b->getName() << " wins!" << endl;
 			if (0 < a->items.size())
 			{
 				b->addItem(a->items.at(0));
@@ -29,8 +29,8 @@ Action::Action(Ent *a, Ent *b)
 			break;
 		}
 		if (b->getHP() < 1)
-		{			
-      cout << Y << b->getName() << " lost the game! " << R << a->getName() << " wins!" << endl;
+			cout << Y << b->getName() << " lost the game! " << R << a->getName() << " wins!" << endl;
+
 			if (0 < b->items.size())
 			{
 				a->addItem(b->items.at(0));
@@ -174,6 +174,7 @@ void Action::fight(Ent *a, Ent *b, int amove)
 						cout << R << a->getName() << " Tryed to use a item but, it faild!" << endl;
 					}
 					
+
 				}
 				
 			}

@@ -55,14 +55,15 @@ int Ent::getAI(Ent *a, Ent *b)
     nodes[0][8] = (double)b->getSPE() / 100.0;
     nodes[0][9] = (double)b->getSTA() / 100.0;
 
-
     for (int x = 0; x < 5 - 1; x++)
     {
         for (int y = 0; y < 10; y++)
         {
             double value = nodes[x][y];
 
-            for (int ny = 0; ny < 10; ny++)            {
+            for (int ny = 0; ny < 10; ny++)
+            {         
+
                 double weight = weights[x][y][ny];
                 nodes[x + 1][ny] += value * weight;
             }
@@ -82,7 +83,7 @@ int Ent::getAI(Ent *a, Ent *b)
     }
     
     sum /= 10.0;
-    sum *= 20.0;
+    sum *= 20.0;    
     return (Rand::getRand(Rand::getRand(Rand::getRand(-32, -10), Rand::getRand(-11, 0)), Rand::getRand(Rand::getRand(1, 10), Rand::getRand(11, 20))));
 
 }

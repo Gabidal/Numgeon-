@@ -13,6 +13,7 @@ class Ent
 {
 public:
     Ent(int hp, int def, int atc, int spe, int sta, bool ai, bool ex);
+
     ~Ent();
     void setHP(int h) { HP = h;}
     int getHP() { return HP;}
@@ -37,8 +38,8 @@ public:
     bool isAI() { return AI;}
     int getAI(Ent *a, Ent *b);
     void setEx(bool *ex) { external = ex;}
-    bool getEx() { return external;}    
-    
+    bool getEx() { return external;}
+
     void clear();
 
 public:
